@@ -51,35 +51,37 @@ describe('async actions', () => {
   });
 
   it('creates FETCH_TODOS_SUCCESS when fetching todos has been done', async () => {
-    const baseTime = new Date(2018, 4, 5);
+    const mockDate = new Date(2018, 4, 5);
     const OriginalDate = Date;
-
-    jest.spyOn(global, 'Date').mockImplementation((...args) => {
+    Date = jest.fn((...args) => {
       if (!args.length) {
-        return baseTime;
+        return mockDate;
       }
 
       return new OriginalDate(...args);
     });
+    Date.now = OriginalDate.now;
+    Date.parse = OriginalDate.parse;
+    Date.UTC = OriginalDate.UTC;
 
     fetchMock
       .getOnce(process.env.REACT_APP_API_ENDPOINT, {
         body: [
           {
-            "contractUntil" : "2022-06-30",
-            "dateOfBirth" : "1993-05-03",
-            "jerseyNumber" : 9,
-            "name" : "Romelu Lukaku",
-            "nationality" : "Belgium",
-            "position" : "Centre-Forward"
+            contractUntil: '2022-06-30',
+            dateOfBirth: '1993-05-03',
+            jerseyNumber: 9,
+            name: 'Romelu Lukaku',
+            nationality: 'Belgium',
+            position: 'Centre-Forward'
           },
           {
-            "contractUntil" : "2019-06-30",
-            "dateOfBirth" : "1990-11-07",
-            "jerseyNumber" : 1,
-            "name" : "David de Gea",
-            "nationality" : "Spain",
-            "position" : "Keeper"
+            contractUntil: '2019-06-30',
+            dateOfBirth: '1990-11-07',
+            jerseyNumber: 1,
+            name: 'David de Gea',
+            nationality: 'Spain',
+            position: 'Keeper'
           },
         ],
         headers: {
@@ -95,21 +97,21 @@ describe('async actions', () => {
         type: types.FETCH_PLAYERS_SUCCESS,
         players: [
           {
-            "age": 25,
-            "contractUntil" : "2022-06-30",
-            "dateOfBirth" : "1993-05-03",
-            "jerseyNumber" : 9,
-            "name" : "Romelu Lukaku",
-            "nationality" : "Belgium",
-            "position" : "Centre-Forward"
+            age: 25,
+            contractUntil: '2022-06-30',
+            dateOfBirth: '1993-05-03',
+            jerseyNumber: 9,
+            name: 'Romelu Lukaku',
+            nationality: 'Belgium',
+            position: 'Centre-Forward'
           }, {
-            "age": 27,
-            "contractUntil" : "2019-06-30",
-            "dateOfBirth" : "1990-11-07",
-            "jerseyNumber" : 1,
-            "name" : "David de Gea",
-            "nationality" : "Spain",
-            "position" : "Keeper"
+            age: 27,
+            contractUntil: '2019-06-30',
+            dateOfBirth: '1990-11-07',
+            jerseyNumber: 1,
+            name: 'David de Gea',
+            nationality: 'Spain',
+            position: 'Keeper'
           }
         ],
       }
