@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { PlayerFinderPage } from './players';
-import rootReducer from './rootReducer';
 import setupStore from './setupStore';
 
 const store = setupStore();
