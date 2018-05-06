@@ -4,7 +4,7 @@ import FinderFilters from './FinderFilters';
 import VisiblePlayerList from './VisiblePlayerList';
 import { fetchPlayers } from '../actions';
 
-class PlayerFinderPage extends Component {
+export class PlayerFinderPage extends Component {
   componentDidMount() {
     this.props.fetchPlayers();
   }

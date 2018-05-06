@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class PlayerList extends Component {
+export class PlayerList extends Component {
   render() {
     return(
       <table>
@@ -31,7 +31,7 @@ class PlayerList extends Component {
 PlayerList.propTypes = {
   players: PropTypes.arrayOf(
     PropTypes.shape({
-      dateOfBirth: PropTypes.string.isRequired,
+      age: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       nationality: PropTypes.string.isRequired,
       position: PropTypes.string.isRequired,

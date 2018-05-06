@@ -2,9 +2,9 @@ import { FETCH_PLAYERS_SUCCESS, FILTER_PLAYERS } from './actionTypes';
 
 const initialState = {
   filters: {
-    age: '',
-    name: '',
-    position: '',
+    age: null,
+    name: null,
+    position: null,
   },
   players: [],
 };

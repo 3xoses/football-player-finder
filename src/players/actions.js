@@ -1,4 +1,4 @@
-import { FETCH_PLAYERS_ERROR, FETCH_PLAYERS_SUCCESS, FILTER_PLAYERS } from './actionTypes';
+import * as types from './actionTypes';
 
 const toAge = (dateOfBirth) => {
   const now = new Date();
@@ -20,6 +20,8 @@ const playerMapper = player => ({
 
 export const fetchPlayers = () => async (dispatch, getState) => {
   try {
+    dispatch(fetchPlayersRequest());
+
     const response = await fetch(process.env.REACT_APP_API_ENDPOINT);
     const players = await response.json();
 
@@ -30,17 +32,21 @@ export const fetchPlayers = () => async (dispatch, getState) => {
   }
 };
 
-export const fetchPlayersError = (players) => ({
-  type: FETCH_PLAYERS_ERROR,
-  players,
+export const fetchPlayersError = (message) => ({
+  type: types.FETCH_PLAYERS_ERROR,
+  message,
+});
+
+export const fetchPlayersRequest = () => ({
+  type: types.FETCH_PLAYERS_REQUEST,
 });
 
 export const fetchPlayersSuccess = (players) => ({
-  type: FETCH_PLAYERS_SUCCESS,
+  type: types.FETCH_PLAYERS_SUCCESS,
   players,
 });
 
 export const filterPlayers = (filters) => ({
-  type: FILTER_PLAYERS,
+  type: types.FILTER_PLAYERS,
   filters,
 });

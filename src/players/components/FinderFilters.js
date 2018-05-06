@@ -3,22 +3,24 @@ import { connect } from 'react-redux';
 import { filterPlayers } from '../actions';
 import { NAME, PLAYER_POSITIONS } from '../constants';
 
-class FinderFilters extends Component {
+export class FinderFilters extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       filters: {
-        ...this.props.filters,
+        age: (this.props.filters.age !== null ? this.props.filters.age : '').toString(),
+        name: this.props.filters.name || '',
+        position: this.props.filters.position || '',
       },
     };
   }
 
-  onInputChange = inputName => event => {
+  onInputChange = event => {
     this.setState({
       filters: {
         ...this.state.filters,
-        [inputName]: event.target.value,
+        [event.target.name]: event.target.value,
       },
     });
   }
@@ -27,8 +29,9 @@ class FinderFilters extends Component {
     event.preventDefault();
 
     this.props.filterPlayers({
-      ...this.state.filters,
-      age: parseInt(this.state.filters.age, 10),
+      age: parseInt(this.state.filters.age, 10) || null,
+      name: this.state.filters.name || null,
+      position: this.state.filters.position || null,
     });
   }
 
@@ -38,7 +41,7 @@ class FinderFilters extends Component {
         <form onSubmit={this.onSubmit}>
           <input
             name="name"
-            onChange={this.onInputChange('name')}
+            onChange={this.onInputChange}
             pattern="[a-z|A-Z| ]*"
             placeholder="Name"
             value={this.state.filters.name}
@@ -46,7 +49,7 @@ class FinderFilters extends Component {
 
           <select
             name="position"
-            onChange={this.onInputChange('position')}
+            onChange={this.onInputChange}
             value={this.state.filters.position}
           >
             <option value="">Position</option>
@@ -58,7 +61,7 @@ class FinderFilters extends Component {
             type="number"
             min="18"
             max="40"
-            onChange={this.onInputChange('age')}
+            onChange={this.onInputChange}
             placeholder="Age"
             value={this.state.filters.age}
           />
