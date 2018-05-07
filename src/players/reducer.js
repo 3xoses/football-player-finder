@@ -1,4 +1,4 @@
-import { FETCH_PLAYERS_SUCCESS, FILTER_PLAYERS } from './actionTypes';
+import * as types from './actionTypes';
 
 const initialState = {
   filters: {
@@ -6,17 +6,31 @@ const initialState = {
     name: null,
     position: null,
   },
+  modalMessage: '',
+  modalVisible: false,
   players: [],
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_PLAYERS_SUCCESS:
+    case types.CLOSE_MODAL:
+      return {
+        ...state,
+        modalMessage: '',
+        modalVisible: false,
+      };
+    case types.FETCH_PLAYERS_ERROR:
+      return {
+        ...state,
+        modalMessage: action.message,
+        modalVisible: true,
+      };
+    case types.FETCH_PLAYERS_SUCCESS:
       return {
         ...state,
         players: action.players
       };
-    case FILTER_PLAYERS:
+    case types.FILTER_PLAYERS:
       return {
         ...state,
         filters: {

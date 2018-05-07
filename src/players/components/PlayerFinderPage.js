@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FinderFilters from './FinderFilters';
+import ModalError from './ModalError';
 import VisiblePlayerList from './VisiblePlayerList';
 import { fetchPlayers } from '../actions';
 
@@ -11,9 +12,11 @@ export class PlayerFinderPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
+        <ModalError />
+
         <div>
-          <h3>Football Player Finder</h3>
+          <h1 className="player-finder-page-title">Football Player Finder</h1>
         </div>
 
         <FinderFilters />

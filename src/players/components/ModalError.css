@@ -1,0 +1,8 @@
+.modal.centered-modal {
+  bottom: auto;
+  display: block;
+  left: 50%;
+  right: auto;
+  top: auto;
+  transform: translateX(-50%);
+}

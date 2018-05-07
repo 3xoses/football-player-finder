@@ -18,6 +18,10 @@ const playerMapper = player => ({
   age: toAge(player.dateOfBirth),
 });
 
+export const closeModal = () => ({
+  type: types.CLOSE_MODAL,
+});
+
 export const fetchPlayers = () => async (dispatch, getState) => {
   try {
     dispatch(fetchPlayersRequest());

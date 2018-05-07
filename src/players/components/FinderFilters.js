@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { filterPlayers } from '../actions';
 import { NAME, PLAYER_POSITIONS } from '../constants';
 
+import './FinderFilters.css';
+
 export class FinderFilters extends Component {
   constructor(props) {
     super(props);
@@ -37,38 +39,54 @@ export class FinderFilters extends Component {
 
   render() {
     return (
-      <div>
+      <div className="finder-filters">
         <form onSubmit={this.onSubmit}>
-          <input
-            name="name"
-            onChange={this.onInputChange}
-            pattern="[a-z|A-Z| ]*"
-            placeholder="Name"
-            value={this.state.filters.name}
-          />
+          <div className="form-row align-items-center">
+            <div className="col-auto">
+              <input
+                className="form-control mb-2"
+                name="name"
+                onChange={this.onInputChange}
+                pattern="[a-z|A-Z| ]*"
+                placeholder="Name"
+                value={this.state.filters.name}
+              />
+            </div>
 
-          <select
-            name="position"
-            onChange={this.onInputChange}
-            value={this.state.filters.position}
-          >
-            <option value="">Position</option>
-            {PLAYER_POSITIONS.map((position, i) => <option key={i} value={position}>{position}</option>)}
-          </select>
+            <div className="col-auto">
+              <select
+                className="form-control mb-2"
+                name="position"
+                onChange={this.onInputChange}
+                value={this.state.filters.position}
+              >
+                <option value="">Position</option>
+                {PLAYER_POSITIONS.map((position, i) => <option key={i} value={position}>{position}</option>)}
+              </select>
+            </div>
 
-          <input
-            name="age"
-            type="number"
-            min="18"
-            max="40"
-            onChange={this.onInputChange}
-            placeholder="Age"
-            value={this.state.filters.age}
-          />
+            <div className="col-auto">
+              <input
+                className="form-control mb-2"
+                name="age"
+                type="number"
+                min="18"
+                max="40"
+                onChange={this.onInputChange}
+                placeholder="Age"
+                value={this.state.filters.age}
+              />
+            </div>
 
-          <button type="submit">
-            Search
-          </button>
+            <div className="col-auto">
+              <button
+                className="btn btn-primary mb-2"
+                type="submit"
+              >
+                Search
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     );

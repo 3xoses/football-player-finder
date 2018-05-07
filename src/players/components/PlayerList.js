@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export class PlayerList extends Component {
   render() {
     return(
-      <table>
+      <table className="table table-bordered table-responsive-sm table-striped">
         <thead>
           <tr>
             <th>Player</th>
