@@ -105,6 +105,32 @@ describe('App', () => {
     expect(wrapper.find('.d-none .modal').length).toBe(0);
   });
 
+  it('it hides the modal error', async () => {
+    fetchMock
+      .getOnce(process.env.REACT_APP_API_ENDPOINT, {
+        status: 404,
+        throws: 'Network Error',
+      });
+
+    let wrapper = mount(
+      <Provider store={store}>
+        <PlayerFinderPage />
+      </Provider>
+    );
+
+    await sleep();
+
+    wrapper = wrapper.update();
+
+    wrapper.find('.modal-backdrop').simulate('click');
+
+    expect(wrapper.find('input[name="age"]').props().value).toBe('');
+    expect(wrapper.find('input[name="name"]').props().value).toBe('');
+    expect(wrapper.find('select[name="position"]').props().value).toBe('');
+    expect(wrapper.find('tbody').children().length).toBe(0);
+    expect(wrapper.find('.d-none .modal').length).toBe(1);
+  });
+
   it('it filters players correctly', async () => {
     fetchMock
       .getOnce(process.env.REACT_APP_API_ENDPOINT, {

@@ -9,6 +9,14 @@ const mockStore = configureMockStore([thunk]);
 
 describe('players actions', () => {
   it('should create an action to throw the error', () => {
+    const expectedAction = {
+      type: types.CLOSE_MODAL,
+    };
+
+    expect(actions.closeModal()).toEqual(expectedAction);
+  });
+
+  it('should create an action to throw the error', () => {
     const message = 'Finish docs'
     const expectedAction = {
       type: types.FETCH_PLAYERS_ERROR,
