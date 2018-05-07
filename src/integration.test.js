@@ -78,6 +78,7 @@ describe('App', () => {
     expect(wrapper.find('input[name="name"]').props().value).toBe('');
     expect(wrapper.find('select[name="position"]').props().value).toBe('');
     expect(wrapper.find('tbody').children().length).toBe(4);
+    expect(wrapper.find('.d-none .modal').length).toBe(1);
   });
 
   it('it renders the modal error', async () => {
@@ -101,6 +102,7 @@ describe('App', () => {
     expect(wrapper.find('input[name="name"]').props().value).toBe('');
     expect(wrapper.find('select[name="position"]').props().value).toBe('');
     expect(wrapper.find('tbody').children().length).toBe(0);
+    expect(wrapper.find('.d-none .modal').length).toBe(0);
   });
 
   it('it filters players correctly', async () => {

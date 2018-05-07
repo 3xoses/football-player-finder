@@ -28,7 +28,7 @@ export default (state = initialState, action) => {
     case types.FETCH_PLAYERS_SUCCESS:
       return {
         ...state,
-        players: action.players
+        players: action.players,
       };
     case types.FILTER_PLAYERS:
       return {
